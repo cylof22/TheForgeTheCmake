@@ -22,6 +22,11 @@ set(EASTL_FILES
     ../The-Forge/Common_3/ThirdParty/OpenSource/EASTL/EAStdC/EASprintf.cpp
 )
 
+#CPU_FEATURES
+set(CPU_FEATURES_FILES
+    ../The-Forge/Common_3/ThirdParty/OpenSource/cpu_features/src/impl_x86_macos.c)
+
+
 # Dear IMGUI
 
 set(IMGUI_FILES
@@ -170,6 +175,10 @@ set(GAINPUT_STATIC_FILES
     ../The-Forge/Common_3/ThirdParty/OpenSource/gainput/lib/source/gainput/gestures/GainputRotateGesture.cpp
     ../The-Forge/Common_3/ThirdParty/OpenSource/gainput/lib/source/gainput/gestures/GainputSimultaneouslyDownGesture.cpp
     ../The-Forge/Common_3/ThirdParty/OpenSource/gainput/lib/source/gainput/gestures/GainputTapGesture.cpp
+    ../The-Forge/Common_3/ThirdParty/OpenSource/gainput/lib/source/gainput/hid/GainputHIDWhitelist.cpp
+    ../The-Forge/Common_3/ThirdParty/OpenSource/gainput/lib/source/gainput/hid/GainputHID.cpp
+    ../The-Forge/Common_3/ThirdParty/OpenSource/gainput/lib/source/gainput/hid/hidparsers/HIDParserPS4Controller.cpp
+    ../The-Forge/Common_3/ThirdParty/OpenSource/gainput/lib/source/gainput/hid/hidparsers/HIDParserPS5Controller.cpp
 )
 
 set(GAINPUT_MACOS_FILES
@@ -178,11 +187,21 @@ set(GAINPUT_MACOS_FILES
     ../The-Forge/Common_3/ThirdParty/OpenSource/gainput/lib/source/gainput/mouse/GainputInputDeviceMouseMac.mm
     ../The-Forge/Common_3/ThirdParty/OpenSource/gainput/lib/source/gainput/mouse/GainputInputDeviceMouseMacRaw.mm
     ../The-Forge/Common_3/ThirdParty/OpenSource/gainput/lib/source/gainput/keyboard/GainputInputDeviceKeyboardMac.cpp
+    ../The-Forge/Common_3/ThirdParty/OpenSource/gainput/lib/source/hidapi/mac/hid.c
 )
- 
+
+set(GAINPUT_WINDOWS_FILES
+    ../The-Forge/Common_3/ThirdParty/OpenSource/gainput/lib/source/hidapi/windows/hid.c)
+
+set(GAINPUT_LINUX_FILES
+    ../The-Forge/Common_3/ThirdParty/OpenSource/gainput/lib/source/hidapi/linux/hid.c)
+
 set(GAINPUT_IOS_FILES
     ../The-Forge/Common_3/ThirdParty/OpenSource/gainput/lib/source/gainput/GainputIos.mm
 )
+
+set(FONT_STASH_FILES
+    ../The-Forge/Common_3/ThirdParty/OpenSource/fontstash/src/fontstash.h)
 
 source_group(Dependencies\\BasisU FILES ${BASISU_FILES})
 source_group(Dependencies\\EASTL FILES ${EASTL_FILES})
@@ -192,6 +211,7 @@ source_group(Dependencies\\minizip FILES ${MINIZIP_FILES})
 source_group(Dependencies\\rmem FILES ${RMEM_FILES})
 source_group(Dependencies\\MeshOptimizer FILES ${MESHOPTIMIZER_FILES})
 source_group(Dependencies\\TinyEXR FILES ${THIRDPARTY_OSS_TINYEXR_FILES})
+source_group(Dependencies\\CPU_Feature FILES ${CPU_FEATURES_FILES})
 
 if(${APPLE_PLATFORM} MATCHES ON) 
     set(GAINPUT_STATIC_FILES
@@ -200,10 +220,25 @@ if(${APPLE_PLATFORM} MATCHES ON)
     )
 endif()
 
+if(${WINDOWS} MATCHES ON) 
+    set(GAINPUT_STATIC_FILES
+        ${GAINPUT_STATIC_FILES}
+        ${GAINPUT_WINDOWS_FILES}
+    )
+endif()
+
+if(${LINUX} MATCHES ON) 
+    set(GAINPUT_STATIC_FILES
+        ${GAINPUT_STATIC_FILES}
+        ${GAINPUT_LINUX_FILES}
+    )
+endif()
+
 source_group(Dependencies\\gainput FILES ${GAINPUT_STATIC_FILES})
 
 add_library(The-Forge-Dependencies STATIC
     ${BASISU_FILES}
+    ${CPU_FEATURES_FILES}
     ${EASTL_FILES}
     ${IMGUI_FILES}
     ${LUA_FILES}

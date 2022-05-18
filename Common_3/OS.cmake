@@ -14,6 +14,8 @@ set(OS_CAMERA_FILES
 
 set(OS_CORE_FILES
     ../The-Forge/Common_3/OS/Core/Atomics.h
+    ../The-Forge/Common_3/OS/Core/CPUConfig.h
+    ../The-Forge/Common_3/OS/Core/CPUConfig.cpp
     ../The-Forge/Common_3/OS/Core/GPUConfig.h
     ../The-Forge/Common_3/OS/Core/RingBuffer.h
     ../The-Forge/Common_3/OS/Core/Config.h
@@ -35,6 +37,7 @@ set(OS_FILESYSTEM_FILES
 
 set(OS_FONT_FILES
     ../The-Forge/Common_3/OS/Fonts/FontSystem.cpp
+    ../The-Forge/Common_3/OS/Fonts/stbtt.cpp
 )
 
 set(OS_FONT_SHADER_FILES
@@ -139,6 +142,9 @@ set(OS_WINDOWS_FILES
     ../The-Forge/Common_3/OS/Windows/WindowsTime.c
 )
 
+set(WINDOW_SYSTEM_FILES
+    ../The-Forge/Common_3/OS/WindowSystem/WindowSystem.cpp)
+
 set(OS_DARWIN_FILES
     ../The-Forge/Common_3/OS/Darwin/CocoaFileSystem.mm
     ../The-Forge/Common_3/OS/Darwin/DarwinLog.c
@@ -150,6 +156,7 @@ set(OS_MACOS_FILES
     ../The-Forge/Common_3/OS/Darwin/macOSBase.mm
     ../The-Forge/Common_3/OS/Darwin/macOSAppDelegate.m
     ../The-Forge/Common_3/OS/Darwin/macOSAppDelegate.h
+    ../The-Forge/Common_3/OS/Darwin/macOSWindow.mm
 )
 
 set(OS_UTILS_FILES
@@ -195,6 +202,7 @@ source_group(OS\\Profiler FILES ${OS_PROFILER_FILES})
 source_group(OS\\Scripting FILES ${OS_SCRIPTING_FILES})
 source_group(OS\\UI FILES ${OS_UI_FILES})
 source_group(OS\\UI\\Shaders FILES ${OS_UI_SHADER_FILES})
+source_group(OS\\WindowSystem ${WINDOW_SYSTEM_FILES})
 source_group(Middleware_3\\Animation FILES ${OS_MIDDLEWARE_ANIMATION_FILES})
 source_group(Middleware_3\\ParallelPrimitives FILES ${OS_MIDDLEWARE_PARALLEL_PRIMS_FILES})
 
