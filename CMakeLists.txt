@@ -37,6 +37,7 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     message("Apple platform detected. Generating macOS and iOS targets.")
 
     set(APPLE_PLATFORM ON)
+    set(CMAKE_XCODE_ATTRIBUTE_CLANG_ENABLE_OBJC_WEAK YES)
 
     find_library(APPLE_APPKIT AppKit)
     find_library(APPLE_QUARTZCORE QuartzCore)

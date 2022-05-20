@@ -5,6 +5,14 @@ set(TRANFROMATIONS_FILES
 )
 
 if(${APPLE_PLATFORM} MATCHES ON)
+    set(TRANFROMATIONS_FILES
+        ${TRANFROMATIONS_FILES}
+        ../../../The-Forge/Common_3/OS/Darwin/macOSAppDelegate.h
+        ../../../The-Forge/Common_3/OS/Darwin/macOSAppDelegate.m
+    )
+endif()
+
+if(${APPLE_PLATFORM} MATCHES ON)
     add_executable(01_Transformations MACOSX_BUNDLE ${TRANFROMATIONS_FILES})
 else()
     add_executable(01_Transformations ${TRANSFORMATIONS_FILES})
